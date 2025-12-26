@@ -1,0 +1,138 @@
+[
+    {
+        "id": "tello_tab",
+        "type": "tab",
+        "label": "TELLO UDP",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "inj_command",
+        "type": "inject",
+        "z": "tello_tab",
+        "name": "command (enter SDK)",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "command",
+        "payloadType": "str",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "udp_out_tello"
+            ]
+        ]
+    },
+    {
+        "id": "inj_takeoff",
+        "type": "inject",
+        "z": "tello_tab",
+        "name": "takeoff",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "takeoff",
+        "payloadType": "str",
+        "x": 150,
+        "y": 170,
+        "wires": [
+            [
+                "udp_out_tello"
+            ]
+        ]
+    },
+    {
+        "id": "inj_land",
+        "type": "inject",
+        "z": "tello_tab",
+        "name": "land",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "payload": "land",
+        "payloadType": "str",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "udp_out_tello"
+            ]
+        ]
+    },
+    {
+        "id": "udp_out_tello",
+        "type": "udp out",
+        "z": "tello_tab",
+        "name": "UDP OUT -> TELLO 192.168.10.1:8889",
+        "addr": "192.168.10.1",
+        "iface": "",
+        "port": "8889",
+        "ipv": "udp4",
+        "outport": "8889",
+        "base64": false,
+        "multicast": "false",
+        "x": 460,
+        "y": 170,
+        "wires": []
+    },
+    {
+        "id": "udp_in_tello",
+        "type": "udp in",
+        "z": "tello_tab",
+        "name": "UDP IN <- replies (8889)",
+        "iface": "",
+        "port": "8889",
+        "ipv": "udp4",
+        "multicast": "false",
+        "group": "",
+        "datatype": "utf8",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "dbg_reply"
+            ]
+        ]
+    },
+    {
+        "id": "dbg_reply",
+        "type": "debug",
+        "z": "tello_tab",
+        "name": "Tello reply",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 320,
+        "wires": []
+    }
+]
