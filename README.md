@@ -1,0 +1,2 @@
+# tello_wifi_ap_change
+tello eduをWiFiのアクセスポイントに接続するように設定します
